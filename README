@@ -1,0 +1,15 @@
+1. Compile the code and set the stage:
+
+	./build.sh
+
+2. Mount filesystem in one shell with
+
+	./hello_ll_{N}.bin -f mnt{N}
+
+where {N} is either 2 or 3 (versions if libfuse).
+Also works simultaneously.
+hello_ll will print to stderr.
+
+3. Run tests in another shell with
+
+	python3 call.py
