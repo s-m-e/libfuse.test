@@ -128,12 +128,33 @@ static int hello_read(const char *path, char *buf, size_t size, off_t offset,
 	return size;
 }
 
+static int hello_utimens(const char *path, const struct timespec tv[2],
+		      struct fuse_file_info *fi)
+{
+	fprintf(stderr, "== utimens 3 ==\n");
+	
+	(void) fi;
+	if(strcmp(path+1, options.filename) != 0)
+		return -ENOENT;
+	
+	fprintf(
+		stderr, "\tvalues: %ld %ld %ld %ld \n",
+		tv[0].tv_sec,
+		tv[0].tv_nsec,
+		tv[1].tv_sec,
+		tv[1].tv_nsec
+	);
+	
+	return 0;
+}
+
 static struct fuse_operations hello_oper = {
 	.init           = hello_init,
 	.getattr	= hello_getattr,
 	.readdir	= hello_readdir,
 	.open		= hello_open,
 	.read		= hello_read,
+	.utimens	= hello_utimens,
 };
 
 static void show_help(const char *progname)
@@ -171,6 +192,8 @@ int main(int argc, char *argv[])
 		assert(fuse_opt_add_arg(&args, "--help") == 0);
 		args.argv[0] = (char*) "";
 	}
+	
+	fprintf(stderr, "Runnung Hello World test!\n");
 
 	return fuse_main(args.argc, args.argv, &hello_oper, NULL);
 }
