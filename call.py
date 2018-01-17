@@ -70,6 +70,5 @@ def run_test(in_path):
 	print(get_times())
 
 if __name__ == '__main__':
-	run_test(os.path.join(os.getcwd(), 'mnt0'))
-	#run_test(os.path.join(os.getcwd(), 'mnt2'))
-	run_test(os.path.join(os.getcwd(), 'mnt2h'))
+	run_test(os.getcwd())
+	run_test(os.path.join(os.getcwd(), 'mnt'))

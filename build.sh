@@ -1,10 +1,6 @@
 #!/bin/bash
 
-mkdir -p mnt0
-mkdir -p mnt2
-mkdir -p mnt3
-mkdir -p mnt2h
-mkdir -p mnt3h
+mkdir -p mnt
 
 rm hello_ll_2.bin
 rm hello_ll_3.bin
